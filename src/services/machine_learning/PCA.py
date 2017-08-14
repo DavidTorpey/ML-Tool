@@ -1,6 +1,7 @@
 import numpy as np
 from werkzeug import secure_filename
 from src.utils.MLToolUtils import Utils
+from src import constants
 
 class PCA(object):
 
@@ -12,11 +13,11 @@ class PCA(object):
     def initialiseData(self, numpyFile):
         inputFile = secure_filename(numpyFile.filename)
         numpyFile.save(inputFile)
-        return np.load(open(inputFile, 'rb'))
+        return np.load(open(inputFile, constants.file_read_flag))
 
     def save(self):
-        filename = self.utils.generateFileName('.npy')
-        np.save(open(filename, 'wb'), self.projected)
+        filename = self.utils.generateFileName(constants.numpy_extension)
+        np.save(open(filename, constants.file_write_flag), self.projected)
         return filename
 
     def compute(self):

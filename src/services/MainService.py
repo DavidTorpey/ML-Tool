@@ -13,8 +13,8 @@ class MainService(object):
         app.logger.info("Computing Harris points...")
         return self.harris_detector.compute()
 
-    def performPCA(self, numpyFile):
-        self.pca = PCA(numpyFile, 2)
+    def performPCA(self, numpyFile, dim):
+        self.pca = PCA(numpyFile, dim)
 
         app.logger.info("Performing principal components analysis on data...")
         return self.pca.compute()

@@ -1,21 +1,23 @@
 import unittest
 from app import app
 from src.utils.MLToolUtils import Utils
+from src import constants
 
 class TestMLTool(unittest.TestCase):
 
     def setUp(self):
-        app.config['TESTING'] = True
+        app.config[constants.testing_property] = True
         self.app = app.test_client()
         self.utils = Utils()
 
     def test_pca(self):
-        response = self.app.post('/MachineLearning/PCA', data={'file':open('../iris.npy', 'rb')})
+        dim = "2"
+        response = self.app.post(constants.pca_endpoint + '?' + constants.dim_param + '=' + dim, data={constants.payload_name:open('../iris.npy', constants.file_read_flag)})
         self.utils.removeFile('iris.npy')
         self.assertEqual(response.status_code, 200)
 
     def test_harris(self):
-        response = self.app.post('/ComputerVision/HarrisDetection', data={'file':open('../lena.jpg', 'rb')})
+        response = self.app.post(constants.harris_endpoint, data={constants.payload_name:open('../lena.jpg', constants.file_read_flag)})
         self.assertEqual(response.status_code, 200)
 
 if __name__ == "__main__":

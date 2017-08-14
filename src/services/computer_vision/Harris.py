@@ -6,6 +6,7 @@ import numpy as np
 from skimage.feature import peak_local_max
 from scipy.ndimage.filters import convolve
 from src.utils.MLToolUtils import Utils
+from src import constants
 
 class Harris(object):
 
@@ -59,7 +60,7 @@ class Harris(object):
         return xx, yy
 
     def draw(self):
-        frame = cv2.cvtColor((self.f * 255.0).astype('uint8'), cv2.COLOR_GRAY2BGR)
+        frame = cv2.cvtColor((self.f * 255.0).astype(constants.uint8), cv2.COLOR_GRAY2BGR)
         for i in range(len(self.x)):
             xxx = self.x[i]
             yyy = self.y[i]
@@ -67,7 +68,7 @@ class Harris(object):
         self.frame = frame
 
     def save(self):
-        filename = self.utils.generateFileName('.jpg')
+        filename = self.utils.generateFileName(constants.jpg_extension)
         cv2.imwrite(filename, self.frame)
         return filename
 
