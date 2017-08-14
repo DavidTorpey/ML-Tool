@@ -1,0 +1,4 @@
+.idea/
+src/*.pyc
+src/services/*.pyc
+src/services/computer_vision/*.pyc
