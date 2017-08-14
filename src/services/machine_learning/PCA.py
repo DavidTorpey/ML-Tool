@@ -1,6 +1,6 @@
 import numpy as np
 from werkzeug import secure_filename
-from src.utils.ML_Tool_Utils import Utils
+from src.utils.MLToolUtils import Utils
 
 class PCA(object):
 

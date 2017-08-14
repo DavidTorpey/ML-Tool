@@ -1,8 +1,8 @@
 import unittest
 from app import app
-from src.utils.ML_Tool_Utils import Utils
+from src.utils.MLToolUtils import Utils
 
-class TestFlaskApiUsingRequests(unittest.TestCase):
+class TestMLTool(unittest.TestCase):
 
     def setUp(self):
         app.config['TESTING'] = True

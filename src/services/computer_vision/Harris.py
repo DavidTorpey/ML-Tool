@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 from skimage.feature import peak_local_max
 from scipy.ndimage.filters import convolve
-from src.utils.ML_Tool_Utils import Utils
+from src.utils.MLToolUtils import Utils
 
 class Harris(object):
 
