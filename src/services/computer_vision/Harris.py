@@ -5,12 +5,13 @@ import cv2
 import numpy as np
 from skimage.feature import peak_local_max
 from scipy.ndimage.filters import convolve
-from uuid import uuid4
+from src.utils.ML_Tool_Utils import Utils
 
 class Harris(object):
 
     def __init__(self, imageFile):
         self.f = self.initialiseImage(imageFile)
+        self.utils = Utils()
 
         app.logger.info('Initialising hyperparameters...')
         self.w = 3
@@ -66,7 +67,7 @@ class Harris(object):
         self.frame = frame
 
     def save(self):
-        filename = str(uuid4()).replace('-','') + '.jpg'
+        filename = self.utils.generateFileName('.jpg')
         cv2.imwrite(filename, self.frame)
         return filename
 

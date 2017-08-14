@@ -1,5 +1,6 @@
-from src.services.computer_vision.Harris import Harris
 from flask import current_app as app
+from src.services.computer_vision.Harris import Harris
+from src.services.machine_learning.PCA import PCA
 
 class MainService(object):
 
@@ -12,3 +13,8 @@ class MainService(object):
         app.logger.info("Computing Harris points...")
         return self.harris_detector.compute()
 
+    def performPCA(self, numpyFile):
+        self.pca = PCA(numpyFile, 2)
+
+        app.logger.info("Performing principal components analysis on data...")
+        return self.pca.compute()

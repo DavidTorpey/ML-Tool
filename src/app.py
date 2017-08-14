@@ -19,5 +19,18 @@ def detectHarrisPoints():
 
     return resultant_image
 
+@app.route('/MachineLearning/PCA', methods=['POST'])
+def performPCA():
+    app.logger.info("Request to perform PCA...")
+    numpy_data = request.files['file']
+
+    numpy_file_path = mainService.performPCA(numpy_data)
+    projected_data = send_file(numpy_file_path)
+    os.remove(numpy_file_path)
+
+    return projected_data
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=4000, host="0.0.0.0", threaded=True)
