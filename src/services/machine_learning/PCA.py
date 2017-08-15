@@ -6,14 +6,9 @@ from src import constants
 class PCA(object):
 
     def __init__(self, numpyFile, d):
-        self.data = self.initialiseData(numpyFile)
-        self.d = d
         self.utils = Utils()
-
-    def initialiseData(self, numpyFile):
-        inputFile = secure_filename(numpyFile.filename)
-        numpyFile.save(inputFile)
-        return np.load(open(inputFile, constants.file_read_flag))
+        self.data = self.utils.initialiseData(numpyFile)
+        self.d = d
 
     def save(self):
         filename = self.utils.generateFileName(constants.numpy_extension)
