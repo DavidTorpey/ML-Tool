@@ -20,5 +20,11 @@ class TestMLTool(unittest.TestCase):
         response = self.app.post(constants.harris_endpoint, data={constants.payload_name:open('../lena.jpg', constants.file_read_flag)})
         self.assertEqual(response.status_code, 200)
 
+    def test_kmeans(self):
+        k = "2"
+        response = self.app.post(constants.kmeans_endpoint + '?' + constants.num_clusters + '=' + k, data={constants.payload_name: open('../iris.npy', constants.file_read_flag)})
+        self.utils.removeFile('iris.npy')
+        self.assertEqual(response.status_code, 200)
+
 if __name__ == "__main__":
     unittest.main()

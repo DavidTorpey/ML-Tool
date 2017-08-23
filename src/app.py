@@ -32,6 +32,17 @@ def performPCA():
 
     return projected_data
 
+@app.route(constants.kmeans_endpoint, methods=[constants.post])
+def performKMeans():
+    app.logger.info("Request to perform k-Means...")
+    numpy_data = request.files[constants.payload_name]
+    k = int(request.args.get(constants.num_clusters))
+
+    numpy_file_path = mainService.performKMeans(numpy_data, k)
+    clusterLabels = send_file(numpy_file_path)
+    os.remove(numpy_file_path)
+
+    return clusterLabels
 
 
 if __name__ == '__main__':
